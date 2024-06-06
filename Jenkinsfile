@@ -19,9 +19,10 @@ pipeline {
         stage('Train') {
             steps {
                 script {
-                    def mlopsImage = docker.build('mlops')
-                    mlopsImage.inside {
-                        sh 'python3 ./model.py'
+                    def customImage = docker.build('custom-image')
+                    customImage.inside {
+                        sh '/app/.venv/bin/python ./model.py'
+                        archiveArtifacts artifacts: 'ner_model/**/*', onlyIfSuccessful: true
                     }
                 }
             }
