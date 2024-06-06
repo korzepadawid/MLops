@@ -15,5 +15,4 @@ COPY requirements.txt .
 COPY model.py .
 
 RUN python3 -m venv .venv
-RUN . .venv/bin/activate
-RUN python3 -m pip install -r requirements.txt
+RUN /app/.venv/bin/pip install -r requirements.txt
