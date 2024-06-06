@@ -1,24 +1,23 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'KAGGLE_USERNAME', defaultValue: 'alicjaszulecka', description: 'Kaggle username')
+        password(name: 'KAGGLE_KEY', defaultValue:'', description: 'Kaggle Key')
+        string(name: 'CUTOFF', defaultValue: '100', description: 'cut off number')
+    }
     stages {
         stage('Git Checkout') {
             steps {
                 checkout scm
             }
         }
-        stage('Build Docker Image') {
+        stage('Train and Predict') {
             steps {
                 script {
-                    def mlopsImage = docker.build('mlops')
-                }
-            }
-        }
-        stage('Train') {
-            steps {
-                script {
-                    docker.image('mlops').inside {
+                    def customImage = docker.build('custom-image')
+                    customImage.inside {
                         sh 'python3 ./model.py'
-                        archiveArtifacts artifacts: 'ner_model/**/*.*', onlyIfSuccessful: true
+                        archiveArtifacts artifacts: 'ner_model/**/*', onlyIfSuccessful: true
                     }
                 }
             }
