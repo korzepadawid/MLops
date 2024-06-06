@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     && rm -rf /var/lib/apt/lists/* 
 
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
-USER docker
-
 WORKDIR /app
 
 COPY requirements.txt .
