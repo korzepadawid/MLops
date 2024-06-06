@@ -11,7 +11,7 @@ pipeline {
                 script {
                     def customImage = docker.build('custom-image')
                     customImage.inside {
-                        sh 'python3 ./model.py'
+                        sh '/app/.venv/bin/python ./model.py'
                         archiveArtifacts artifacts: 'ner_model/**/*', onlyIfSuccessful: true
                     }
                 }
