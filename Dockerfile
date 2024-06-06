@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libopenblas-dev \
     sudo \ 
     python3-pip \
+    python3.12-venv \
     && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /app
