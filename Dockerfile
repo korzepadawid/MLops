@@ -13,7 +13,7 @@ RUN useradd -ms /bin/bash appuser && \
     mkdir -p /home/appuser/.cache/huggingface && \
     chown -R appuser:appuser /home/appuser/.cache
 
-WORKDIR /app
+WORKDIR /home/appuser/app
 
 USER appuser
 
