@@ -6,13 +6,18 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Train') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     def mlopsImage = docker.build('mlops')
-                    mlopsImage.inside {
-                        sh 'pip list'
-                        sh 'python ./model.py'
+                }
+            }
+        }
+        stage('Train') {
+            steps {
+                script {
+                    docker.image('mlops').inside {
+                        sh 'python3 ./model.py'
                         archiveArtifacts artifacts: 'ner_model/**/*.*', onlyIfSuccessful: true
                     }
                 }
