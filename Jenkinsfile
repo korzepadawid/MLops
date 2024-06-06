@@ -11,7 +11,8 @@ pipeline {
                 script {
                     def mlopsImage = docker.build('mlops')
                     mlopsImage.inside {
-                        sh 'python3 ./model.py'
+                        sh 'pip list'
+                        sh 'python ./model.py'
                         archiveArtifacts artifacts: 'ner_model/**/*.*', onlyIfSuccessful: true
                     }
                 }
