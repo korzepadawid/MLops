@@ -4,9 +4,6 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set the cache directory for HF, to avoid jenkins issues
-ENV TRANSFORMERS_CACHE=./cache/
-
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -15,8 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /app
-
-RUN python -m venv env && source ./env/bin/activate
 
 COPY requirements.txt .
 
