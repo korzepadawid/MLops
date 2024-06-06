@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
+RUN chown -R user:user /code
+
 COPY requirements.txt .
 
 RUN chown -R user:user /code
