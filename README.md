@@ -30,39 +30,41 @@ To get a local copy of the project up and running, follow these steps:
    ```bash
    git clone <repository_url>
    cd <repository_directory>
-```
+   ```
 
 Build the Docker image:
 
-bash
+```bash
 Copy code
 docker build -t ner-app .
+```
+
 Run the Docker container:
 
-bash
-Copy code
+```bash
 docker run -p 5000:5000 ner-app
-Access the application:
+```
+## Access the application:
 Open your web browser and go to http://localhost:5000 to use the NER application.
 
-Jenkins Pipelines
+## Jenkins Pipelines
 The Jenkins pipelines are configured to:
 
-Build: Automatically build the Docker image whenever changes are pushed to the repository.
+## Build: Automatically build the Docker image whenever changes are pushed to the repository.
 Test: Run unit tests and ensure code quality standards are met.
 Deploy: Automatically deploy the application to Google Compute Engine upon successful build and tests.
 To set up Jenkins pipelines for this project, refer to the Jenkinsfile in the repository and configure your Jenkins server accordingly.
 
-Deployment to Google Compute Engine
+## Deployment to Google Compute Engine
 Deployment to Google Compute Engine involves the following steps:
 
-Ensure Google Cloud SDK is installed and authenticated.
+## Ensure Google Cloud SDK is installed and authenticated.
 Modify the deployment scripts (deploy.sh, update.sh) with your specific project and instance details.
 Execute the deployment scripts to deploy or update the Dockerized NER application on Google Compute Engine.
 Contributing
 Contributions are welcome! To contribute to this project, follow these steps:
 
-Fork the repository.
+## Fork the repository.
 Create a new branch (git checkout -b feature/your-feature).
 Make your changes.
 Commit your changes (git commit -am 'Add some feature').
