@@ -1,4 +1,4 @@
-# NER Application with Jenkins Pipelines and Docker
+# NER Model with Jenkins Pipelines and Docker
 
 ## Overview
 
